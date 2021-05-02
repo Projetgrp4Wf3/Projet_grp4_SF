@@ -38,7 +38,8 @@ class CalendarType extends AbstractType
                 'help' => "Merci de renseigner aussi votre numéro et adresse mail dans le champs pour que l'on puisse vous contacter."
             ])
             ->add('all_day', CheckboxType::class, [
-                'label' => "Réserver la journée"
+                'label' => "Réserver la journée",
+                'required' => false
             ])
             ->add('background_color', ColorType::class, [
                 'label' => "Choisissez la couleur de fond"
