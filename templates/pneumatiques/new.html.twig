@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{# Page settings #}
+{% set title = "Ajouter des pneumatiques" %}
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+{# Page content #}
+{% block body %}
+    <div class="container">
+
+    {# header / Titre de la page #}
+        <header class="page-header">
+            <h1 class="page-title">{{ title }}</h1>
+        </header>
+    </div>
+
+{# le formulaire de creation #}
+    {% include "pneumatiques/_form.html.twig" with {form: form} %}
+
+    <a href="{{ path('pneumatiques:index') }}">Retour à la page principal</a>
+    
+{% endblock %}

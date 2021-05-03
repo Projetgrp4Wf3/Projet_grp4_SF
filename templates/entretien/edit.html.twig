@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Modification de nos entretiens : " ~ entretien.Title %}
+
+{# Page titre #}
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+{# Content #}
+{% block body %}
+<div class="container">
+
+    {# Header / Titre de la page #}
+    <header class="page-header">
+        <h1 class="page-title">{{ title }}</h1>
+    </header>
+
+    {# Formulaire de Création #}
+    {% include "entretien/_form.html.twig" with {form: form} only %}
+
+    <a href="{{ path('entretien:index') }}">Retour à la page principal</a>
+    
+    </div>
+{% endblock %}

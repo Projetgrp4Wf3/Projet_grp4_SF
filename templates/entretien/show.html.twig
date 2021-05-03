@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Tous nos entretiens : " ~ entretien.Title %}
+
+
+{# Page titre #}
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+
+{# Page content #}
+{% block body %}
+    <div class="container">
+
+    {# header / Titre de la page #}
+        <header class="page-header">
+            <h1 class="page-title">{{ title }}</h1>
+        </header>
+    </div>
+
+        {# Barre d'actions (ajouter un nouvelle entretien) #}
+    <div class="page-toolbar text-right mt-3">
+        <a href="{{ path('entretien:create') }}" class="btn btn-primary btn-sm">
+        <i class="ri-add-circle-line"></i> Ajouter un nouveau entretien </a>
+        <a href="{{ path('entretien:update')}}" class="btn btn-primary btn-sm">
+        <i class="ri-add-circle-line"></i>Modifier la fiche du entretien</a>
+        <a href="{{ path('entretien:delete')}}" class="btn btn-primary btn-sm"><i class="ri-add-circle-line"></i> Supprimer</a>
+    </div>
+
+{# Infos sur l'entretien #}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entretien.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre de la prestation</th>
+                <td>{{ entretien.Title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entretien.Description }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ entretien.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('entretien:index') }}">Retour à la liste principal</a>
+
+    <a href="{{ path('entretien:edit', {id: entretien.id}) }}">Editer</a>
+
+    {% include "entretien/_form.html.twig" with {form: form} %}
+{% endblock %}

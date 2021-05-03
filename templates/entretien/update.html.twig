@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Modification de nos entretiens : " ~ entretien.Title %}
+
+
+{# Page titre #}
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+
+
+{# Page content #}
+{% block body %}
+    <div class="container">
+
+    {# header / Titre de la page #}
+        <header class="page-header">
+            <h1 class="page-title">{{ title }}</h1>
+        </header>
+    </div>
+
+    {# Barre d'actions (ajouter un produit) #}
+    <div class="page-toolbar text-right mt-3">
+        <a href="{{ path('entretien:read', {id: entretien.id}) }}" class="btn btn-secondary btn-sm">Annuler</a>
+        <a href="{{ path('entretien:index') }}" class="btn btn-secondary btn-sm">Retour à la liste des entretiens</a>
+    </div>
+
+    
+    {# Formulaire de creation du produit #}
+    {% include "entretien/_form.html.twig" with {form: form, btn_label:"Modifier l'entretien"} only %}
+
+
+</div>
+{% endblock %}
