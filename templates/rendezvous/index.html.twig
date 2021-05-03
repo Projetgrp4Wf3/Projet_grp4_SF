@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Prendre Rendez-Vous {% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Prendre Rendez-vous</h1>
+
+{{ form_start(form) }}
+{# nom#}
+      <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              {{ form_label(form.name) }}
+              {{ form_widget(form.name) }}
+              {{ form_help(form.name) }}
+              {{ form_errors(form.name) }}
+            </div>
+
+{# prenom#}
+            <div class="col-md-6">
+              {{ form_label(form.prenom) }}
+              {{ form_widget(form.prenom) }}
+              {{ form_help(form.prenom) }}
+              {{ form_errors(form.prenom) }}
+          </div>
+      </div>
+
+{# mail#}
+      <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              {{ form_label(form.mail) }}
+              {{ form_widget(form.mail) }}
+              {{ form_help(form.mail) }}
+              {{ form_errors(form.mail) }}
+            </div>
+{# numero#}
+            <div class="col-md-6">
+              {{ form_label(form.numero) }}
+              {{ form_widget(form.numero) }}
+              {{ form_help(form.numero) }}
+              {{ form_errors(form.numero) }}
+          </div>
+      </div>
+
+{# adresse#}
+      <div class="form-group">
+          <div class="row">
+            <div class="col-12">
+              {{ form_label(form.adresse) }}
+              {{ form_widget(form.adresse) }}
+              {{ form_help(form.adresse) }}
+              {{ form_errors(form.adresse) }}
+            </div>
+
+{# ville#}
+            <div class="col-md-6">
+              {{ form_label(form.ville) }}
+              {{ form_widget(form.ville) }}
+              {{ form_help(form.ville) }}
+              {{ form_errors(form.ville) }}
+            </div>
+
+{# code (postal)#}
+            <div class="col-md-6">
+              {{ form_label(form.code) }}
+              {{ form_widget(form.code) }}
+              {{ form_help(form.code) }}
+              {{ form_errors(form.code) }}
+            </div>
+          </div>
+      </div>
+
+{# domaine#}
+      <div class="form-group">
+        <label>Prendre Rendez-vous pour: </label>
+        <div class="form-row">
+            <div class="custom-control custom-control-inline custom-radio">
+          <input type="radio" class="custom-control-input" id="radio1" name="radiobouton">
+          <label class="custom-control-label" for="radio1">Les Pneus</label> 
+              </div>
+            <div class="custom-control custom-control-inline custom-radio">    
+          <input type="radio" class="custom-control-input" id="radio2" name="radiobouton">
+          <label class="custom-control-label" for="radio2">Les Freins</label>   
+              </div>
+            <div class="custom-control custom-control-inline custom-radio">    
+          <input type="radio" class="custom-control-input" id="radio3" name="radiobouton">
+          <label class="custom-control-label" for="radio3">La vidange</label>   
+              </div>
+            <div class="custom-control custom-control-inline custom-radio">    
+          <input type="radio" class="custom-control-input" id="radio4" name="radiobouton">
+          <label class="custom-control-label" for="radio4">Autres demandes: </label>
+          <input type="text" class="text" id="radio4" placeholder="votre demande">
+              </div>
+            </div>
+      </div>
+
+
+
+  <button type="submit" class="btn">Prendre Rendez-vous</button>
+            {{ form_end(form) }}
+
+        <a href="{{ path('services') }}">Retour à la page d'Accueil</a>
+
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Tous nos entretiens" %}
+
+
+{# Page titre #}
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+
+{# Page content #}
+{% block body %}
+    <div class="container">
+
+    {# header / Titre de la page #}
+        <header class="page-header">
+            <h1 class="page-title">{{ title }}</h1>
+        </header>
+    </div>
+
+    {# Barre d'actions (ajouter un nouvelle entretien) #}
+    <div class="page-toolbar text-right mt-3">
+        <a href="{{ path('entretien:create') }}" class="btn btn-primary btn-sm">
+        <i class="ri-add-circle-line"></i> Ajouter un nouveau entretien </a>
+    </div>
+
+
+{# Tableau de la liste des entretiens #}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+
+        {# Corps du Tableau HTML #}
+        <tbody>
+        {# Boucle sur la liste des entretiens #}
+        {% for entretien in entretiens %}
+            <tr>
+                <td>{{ entretien.id }}</td>
+                <td>{{ entretien.Title }}</td>
+                <td>{{ entretien.description }}</td>
+                <td>{{ entretien.price}}</td>
+                <td>
+
+                {# Liens #}
+                    <a href="{{ path('entretien:edit', {id: entretien.id}) }}">Editer</a>
+                    <a href="{{ path('entretien:update', {id: entretien.id}) }}"> Modifier</a>
+                    <a href="{{ path('entretien:show', {id: entretien.id}) }}">Montrer </a>
+                    <a href="{{ path('entretien:new', {id: entretien.id}) }}">Création nouvelle</a>                    
+                </td>
+            </tr>
+        
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

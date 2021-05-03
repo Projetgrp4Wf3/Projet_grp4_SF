@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Tous nos pneumatiques : " pneumatique.Title %}
+
+{# Page titre #}
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+{# Page content #}
+{% block body %}
+    <div class="container">
+
+    {# header / Titre de la page #}
+        <header class="page-header">
+            <h1 class="page-title">{{ title }}</h1>
+        </header>
+    </div>
+
+        {# Barre d'actions (ajouter de nouveaux pneumatiques) #}
+    <div class="page-toolbar text-right mt-3">
+        <a href="{{ path('pneumatiques:create') }}" class="btn btn-primary btn-sm">
+        <i class="ri-add-circle-line"></i> Ajouter de nouveaux pneumatiques. </a>
+        <a href="{{ path('pneumatiques:update')}}" class="btn btn-primary btn-sm">
+        <i class="ri-add-circle-line"></i>Modifier</a>
+        <a href="{{ path('pneumatiques:delete')}}" class="btn btn-primary btn-sm"><i class="ri-add-circle-line"></i> Supprimer</a>
+    </div>
+
+{# Infos sur les pneumatiques #}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pneumatique.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ pneumatique.Title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ pneumatique.description }}
+                </td>
+            </tr>
+            <tr>
+            <th>Prix</th>
+            <td>{{ pneumatique.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('pneumatiques:index') }}">Retour à la liste principale</a>
+
+    <a href="{{ path('pneumatiques:edit', {id: pneumatique.id}) }}">Editer</a>
+
+    {% include "pneumatiques/_form.html.twig" with {form: form} %}
+    
+{% endblock %}
