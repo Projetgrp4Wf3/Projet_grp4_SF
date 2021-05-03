@@ -10,13 +10,14 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
 /* harmony import */ var fullcalendar_main_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fullcalendar/main.min.css */ "./node_modules/fullcalendar/main.min.css");
-/* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/app.css */ "./assets/styles/app.css");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var fullcalendar_main_min_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! fullcalendar/main.min.js */ "./node_modules/fullcalendar/main.min.js");
-/* harmony import */ var fullcalendar_main_min_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(fullcalendar_main_min_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var remixicon_fonts_remixicon_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! remixicon/fonts/remixicon.css */ "./node_modules/remixicon/fonts/remixicon.css");
+/* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/app.css */ "./assets/styles/app.css");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var fullcalendar_main_min_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! fullcalendar/main.min.js */ "./node_modules/fullcalendar/main.min.js");
+/* harmony import */ var fullcalendar_main_min_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(fullcalendar_main_min_js__WEBPACK_IMPORTED_MODULE_6__);
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -24,6 +25,7 @@ __webpack_require__.r(__webpack_exports__);
  * (and its CSS file) in your base layout (base.html.twig).
  */
 // any CSS you import will output into a single css file (app.css in this case)
+
 
 
  // start the Stimulus application
@@ -57,8 +59,8 @@ __webpack_require__.r(__webpack_exports__);
 /******/ "use strict";
 /******/ 
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ __webpack_require__.O(0, ["vendors-node_modules_bootstrap_dist_js_bootstrap_js-node_modules_fullcalendar_main_min_js-nod-912b01"], () => (__webpack_exec__("./assets/app.js")));
+/******/ __webpack_require__.O(0, ["vendors-node_modules_bootstrap_dist_js_bootstrap_js-node_modules_fullcalendar_main_min_js-nod-ef7e57"], () => (__webpack_exec__("./assets/app.js")));
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hc3NldHMvYXBwLmpzIiwid2VicGFjazovLy8uL2Fzc2V0cy9zdHlsZXMvYXBwLmNzcz8zZmJhIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7Q0FJQTtBQUNBO0FBRUE7O0NBR0E7O0NBR0E7O0FBQ0E7Ozs7Ozs7Ozs7Ozs7QUN2QkEiLCJmaWxlIjoiYXBwLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLypcclxuICogV2VsY29tZSB0byB5b3VyIGFwcCdzIG1haW4gSmF2YVNjcmlwdCBmaWxlIVxyXG4gKlxyXG4gKiBXZSByZWNvbW1lbmQgaW5jbHVkaW5nIHRoZSBidWlsdCB2ZXJzaW9uIG9mIHRoaXMgSmF2YVNjcmlwdCBmaWxlXHJcbiAqIChhbmQgaXRzIENTUyBmaWxlKSBpbiB5b3VyIGJhc2UgbGF5b3V0IChiYXNlLmh0bWwudHdpZykuXHJcbiAqL1xyXG5cclxuLy8gYW55IENTUyB5b3UgaW1wb3J0IHdpbGwgb3V0cHV0IGludG8gYSBzaW5nbGUgY3NzIGZpbGUgKGFwcC5jc3MgaW4gdGhpcyBjYXNlKVxyXG5pbXBvcnQgJ2Jvb3RzdHJhcC9kaXN0L2Nzcy9ib290c3RyYXAubWluLmNzcyc7XHJcbmltcG9ydCAnZnVsbGNhbGVuZGFyL21haW4ubWluLmNzcyc7XHJcbmltcG9ydCAnLi9zdHlsZXMvYXBwLmNzcyc7XHJcblxyXG5cclxuLy8gc3RhcnQgdGhlIFN0aW11bHVzIGFwcGxpY2F0aW9uXHJcbi8vIGltcG9ydCAnLi9ib290c3RyYXAnO1xyXG5cclxuLy8gSW1wb3J0IGRlIGpRdWVyeVxyXG5pbXBvcnQgJ2pxdWVyeSc7XHJcblxyXG4vLyBJbXBvcnQgZGUgcG9wcGVyLmpzXHJcbmltcG9ydCAncG9wcGVyLmpzJztcclxuXHJcbi8vIEltcG9ydCBkZSBib290c3RyYXAuanNcclxuaW1wb3J0ICdib290c3RyYXAnO1xyXG5cclxuaW1wb3J0ICdmdWxsY2FsZW5kYXIvbWFpbi5taW4uanMnO1xyXG5cclxuXHJcbiIsIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJzb3VyY2VSb290IjoiIn0=
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hc3NldHMvYXBwLmpzIiwid2VicGFjazovLy8uL2Fzc2V0cy9zdHlsZXMvYXBwLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0NBSUE7QUFDQTtBQUVBOztDQUdBOztDQUdBOztBQUNBOzs7Ozs7Ozs7Ozs7O0FDeEJBIiwiZmlsZSI6ImFwcC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXHJcbiAqIFdlbGNvbWUgdG8geW91ciBhcHAncyBtYWluIEphdmFTY3JpcHQgZmlsZSFcclxuICpcclxuICogV2UgcmVjb21tZW5kIGluY2x1ZGluZyB0aGUgYnVpbHQgdmVyc2lvbiBvZiB0aGlzIEphdmFTY3JpcHQgZmlsZVxyXG4gKiAoYW5kIGl0cyBDU1MgZmlsZSkgaW4geW91ciBiYXNlIGxheW91dCAoYmFzZS5odG1sLnR3aWcpLlxyXG4gKi9cclxuXHJcbi8vIGFueSBDU1MgeW91IGltcG9ydCB3aWxsIG91dHB1dCBpbnRvIGEgc2luZ2xlIGNzcyBmaWxlIChhcHAuY3NzIGluIHRoaXMgY2FzZSlcclxuaW1wb3J0ICdib290c3RyYXAvZGlzdC9jc3MvYm9vdHN0cmFwLm1pbi5jc3MnO1xyXG5pbXBvcnQgJ2Z1bGxjYWxlbmRhci9tYWluLm1pbi5jc3MnO1xyXG5pbXBvcnQgJ3JlbWl4aWNvbi9mb250cy9yZW1peGljb24uY3NzJztcclxuaW1wb3J0ICcuL3N0eWxlcy9hcHAuY3NzJztcclxuXHJcblxyXG4vLyBzdGFydCB0aGUgU3RpbXVsdXMgYXBwbGljYXRpb25cclxuLy8gaW1wb3J0ICcuL2Jvb3RzdHJhcCc7XHJcblxyXG4vLyBJbXBvcnQgZGUgalF1ZXJ5XHJcbmltcG9ydCAnanF1ZXJ5JztcclxuXHJcbi8vIEltcG9ydCBkZSBwb3BwZXIuanNcclxuaW1wb3J0ICdwb3BwZXIuanMnO1xyXG5cclxuLy8gSW1wb3J0IGRlIGJvb3RzdHJhcC5qc1xyXG5pbXBvcnQgJ2Jvb3RzdHJhcCc7XHJcblxyXG5pbXBvcnQgJ2Z1bGxjYWxlbmRhci9tYWluLm1pbi5qcyc7XHJcblxyXG5cclxuIiwiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sInNvdXJjZVJvb3QiOiIifQ==
