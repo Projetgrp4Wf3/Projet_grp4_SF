@@ -1,0 +1,29 @@
+
+{{ form_start(form, {attr: {novalidate: "novalidate"}}) }}
+
+{# entretien title #}
+<div class="form-group">
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+    {{ form_errors(form.title) }}
+    {{ form_help(form.title)}}
+</div>
+
+{# Description #}
+<div class="form-group">
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description) }}
+    {{ form_errors(form.description) }}
+    {{ form_help(form.description) }}
+</div>
+
+{# Price #}
+<div class="form-group">
+    {{ form_label(form.price) }}
+    {{ form_widget(form.price) }}
+    {{ form_errors(form.price) }}
+    {{ form_help(form.price) }}
+</div>
+
+    <button class="btn">{{ button_label|default('Ajouter') }}</button>
+{{ form_end(form) }}

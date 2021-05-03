@@ -3,11 +3,11 @@
     "app": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_js-node_modules_fullcalendar_main_min_js-nod-912b01.js",
+        "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_js-node_modules_bootstrap_dist_css_bootstrap-375d11.js",
         "/build/app.js"
       ],
       "css": [
-        "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_js-node_modules_fullcalendar_main_min_js-nod-912b01.css",
+        "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_js-node_modules_bootstrap_dist_css_bootstrap-375d11.css",
         "/build/app.css"
       ]
     }

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% set title = "Suppression de nos entretiens : " ~ entretien.Title %}
+
+
+{# Page titre #}
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+
+{# Page content #}
+{% block body %}
+    <div class="container">
+
+    {# header / Titre de la page #}
+        <header class="page-header">
+            <h1 class="page-title">{{ title }}</h1>
+        </header>
+    </div>
+
+        {# Barre d'actions ( entretien) #}
+    <div class="page-toolbar text-right mt-3">
+        <a href="{{ path('entretien:show', {id: entretien.id}) }}" class="btn btn-primary btn-sm">Annuler </a>
+        <a href="{{ path('entretien:index') }}" class="btn btn-primary btn-sm">
+        Retour à la liste des entretiens</a>
+</div>
+
+<p>Vous êtes sur le point de Supprimer l'entretien {{ entretien.title }}, voulez-vous continuer ?</p>
+
+{# Formulaire de confirmation de suppression du produit #}
+<form method="post" action="{{ path('entretien:delete', {id: entretien.id}) }}" onsubmit="return confirm('Etes vous sûre de vouloir continuer la suppression?');">
+
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ entretien.id) }}">
+
+    {# Bouton d'annulation #}
+    <a href="{{ path('entretien:show', {id: entretien.id}) }}" class="btn btn-secondary btn-sm">Non</a>
+
+    {# Bouton de confirmation #}
+    <button type="submit" class="btn btn-danger btn-sm">Suppression</button>
+</form>
+
+</div>
+{% endblock %}

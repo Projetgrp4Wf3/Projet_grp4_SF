@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% set title = "Tous nos pneumatiques" %}
+
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+{# Page content #}
+{% block body %}
+    <div class="container">
+
+    {# header / Titre de la page #}
+        <header class="page-header">
+            <h1 class="page-title">{{ title }}</h1>
+        </header>
+    </div>
+
+    {# Barre d'actions (ajouter de nouveaux pneumatiques) #}
+    <div class="page-toolbar text-right mt-3">
+        <a href="{{ path('pneumatiques:edit') }}" class="btn btn-primary btn-sm">
+        <i class="ri-add-circle-line"></i> Ajouter de nouveaux pneumatiques </a>
+    </div>
+
+{# Tableau de la liste des entretiens #}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+
+{# corps du tableau #}
+        <tbody>
+        {% for pneumatique in pneumatiques %}
+            <tr>
+                <td>{{ pneumatique.id }}</td>
+                <td>{{ pneumatique.Title }}</td>
+                <td>{{ pneumatique.description }}</td>
+                <td>{{ pneumatique.price }}</td>
+                <td>
+
+                {# Liens #}
+                    <a href="{{ path('pneumatiques:show', {id: pneumatique.id}) }}">Montrer</a>
+                    <a href="{{ path('pneumatiques:edit', {id: pneumatique.id}) }}">Editer</a>
+                        <a href="{{ path('pneumatiques:new', {id: pneumatique.id}) }}">Créer</a>
+                </td>
+            </tr>
+
+
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
