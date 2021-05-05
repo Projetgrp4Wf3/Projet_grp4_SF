@@ -36,8 +36,8 @@ Encore
      * Images
      */
     .copyFiles({
-        from: './assets/images',
-        to: 'images/[path][name].[ext]',
+        from: './assets/img',
+        to: 'img/[path][name].[ext]',
     })
 
     /*

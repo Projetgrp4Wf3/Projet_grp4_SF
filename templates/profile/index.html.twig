@@ -5,20 +5,26 @@
 {% block body %}
 <div class="container mt-5 mb-5 pt-3 pb-3 bg-white" style="border:5px solid black; border-radius:10px; box-shadow:2px 2px 5px black;">
     <h1 class="text-center font-weight-bold">Page de profile</h1>
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-3">
             <h3>Sous menu:</h3>
             <ul class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action">The current link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+                <a href="#" class="list-group-item list-group-item-action">Mes infos</a>
+                <a href="#" class="list-group-item list-group-item-action">Gérer mon portefeuille</a>
+                <a href="#" class="list-group-item list-group-item-action">Messagerie</a>
+                <a href="#" class="list-group-item list-group-item-action">Option</a>
             </ul>
         </div>
-        <div class="col-9">
+        <div class="col-5 ml-5">
 
             <h3>Information utilisateur:</h2>
 
+            <ul class="list-group">
+                <li class="liste">Nom: {{profile.lastname}}</li>
+                <li class="liste">Prénom: {{profile.firstname}}</li>
+                <li class="liste">Date de naissance: {{profile.birthday}}</li>
+                <li class="liste">Email: {{profile.email}}</li>
+            </ul>
         </div>
     </div>
 </div>

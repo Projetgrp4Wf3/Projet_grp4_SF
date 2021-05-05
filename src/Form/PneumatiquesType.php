@@ -56,7 +56,8 @@ class PneumatiquesType extends AbstractType
             ],
             'constraints' => [
                 new Length([
-                    'max' => "La description ne doit pas dépasser 1000 caractères."
+                    'min' => 5,
+                    'minMessage' => "Minimum 5 caractères"
                 ])
             ],
         ])

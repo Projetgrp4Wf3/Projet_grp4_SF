@@ -18,3 +18,7 @@ body {
     font-size: 2rem;
     text-shadow: black 0.1em 0.1em 0.2em;
 }
+
+.liste{
+    margin: 10px;
+}

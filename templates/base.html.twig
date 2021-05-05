@@ -2,18 +2,25 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}DepanAuto{% endblock %}</title>
+        <title>{% block title %}MLV Auto{% endblock %}</title>
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
+        {# Message Flash #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
         
     </head>
     <body>
         
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Accueil</a>
+            <a class="navbar-brand" href="{{ path('homepage') }}">Accueil</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,19 +28,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-<<<<<<< HEAD
                     <a class="nav-link" href="{{ path('rdv_new') }}">Prendre un RDV<span class="sr-only">(current)</span></a>
-=======
-                <a class="nav-link" href="#">Présentation <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ path('services' )}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nos services - Prendre un Rdv</a>
+                    <a class="nav-link dropdown-toggle" href="{{ path('services' )}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services - Faire un devis</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ path('pneumatiques:index') }}">Pneumatiques</a>
                     <a class="dropdown-item" href="{{ path('entretien:index') }}">Entretien de votre véhicule</a>
-                    <a class="dropdown-item" href="{{ path('rendezvous:index')}}">Prendre Rdv</a>
+                    <a class="dropdown-item" href="{{ path('devi_new')}}">Faites un devis</a>
                 </div>
->>>>>>> 4f0bbb0817bf90ca14966fd53e9e286e2aa43a76
+
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,23 +48,58 @@
                     <a class="dropdown-item" href="#">Pneus occasions</a>
                     </div>
 
-            <div class="dropdown-divider">
-                <a class="dropdown-item" href="#">Faites un devis</a>
-                    </div>
+            
                 </li>
                 <!--module de connexion -->
+
+                {# L'utilisateur est anonyme #}
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Connexion</a>
+                    <a class="nav-link" href="{{ path('profile') }}">Mon profile</a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    
+                    {# Calendrier #}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('calendar') }}">Calendrier</a>
+                    </li>
+
+                    {# Liste des RDV #}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('rdv_index') }}">Liste des RDV</a>
+                    </li>
+
+                    {# Ajout pneu #}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('pneumatiques:new') }}"><i class="ri-add-circle-line"></i> Pneus</a>
+                    </li>
+
+                    {# Ajout presta #}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('entretien:new') }}"><i class="ri-add-circle-line"></i> Prestation</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link btn btn-success" href="{{ path('app_logout') }}">Déconnexion</a>
+                </li>
+                
+
+                {% else %}
+
+                {# L'utilisateur est identifié #}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Déconnexion</a>
+                    <a class="nav-link btn btn-success" href="{{ path('app_login') }}">Connexion</a>
                 </li>
+
+                {% endif %}
                 <!--Fin de module de connexion-->
-                <!--Contact-->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Nos Contacts</a>
-                </li>
-                <!-- fin de contact-->
+                
             </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search">
@@ -68,18 +107,11 @@
                 </form>
             </div>
         </nav>
-<hr>
-        <div class="container">
-            {% block body %}{% endblock %}
-        </div>
+
         
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+            {% block body %}{% endblock %}
+        
 
-
-
-<hr>
 <!-- Footer -->
 <footer class="page-footer font-small unique-color-dark">
 
@@ -226,6 +258,12 @@
 
 </footer>
 <!-- Footer -->
-<hr>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js" integrity="sha256-ekrJn2FeZaiUFq99QswpQCUTME/HxaDfX7R8INzKJGE=" crossorigin="anonymous"></script>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
     </body>
 </html>

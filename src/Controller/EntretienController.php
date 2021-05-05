@@ -17,12 +17,12 @@ class EntretienController extends AbstractController
 {
     /**
      * path('entretien:index')
-     * @Route("/", name=":index", methods={"GET"})
+     * @Route("/", name=":index", methods={"HEAD","GET"})
      */
     public function index(EntretienRepository $entretienRepository): Response
     {
         $entretiens = $entretienRepository->findAll();
-        return $this->render('entretien:index.html.twig', [
+        return $this->render('entretien/index.html.twig', [
             'entretiens' => $entretiens
         ]);
     }
@@ -33,19 +33,19 @@ class EntretienController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $entretien = new Entretien();
-        $form = $this->createForm(EntretienType::class, $entretien);
+        $entretiens = new Entretien();
+        $form = $this->createForm(EntretienType::class, $entretiens);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($entretien);
+            $entityManager->persist($entretiens);
             $entityManager->flush();
 
-            $this->addFlash('success', "L'entretien ".$entretien->getTitle()." a été créé !");
+            $this->addFlash('success', "L'entretien ".$entretiens->getTitle()." a été créé !");
 
             return $this->redirectToRoute('entretien:index', [
-                'id' => $entretien->getId()
+                'id' => $entretiens->getId()
             ]);
         }
 
@@ -58,42 +58,21 @@ class EntretienController extends AbstractController
     /**
      * @Route("/{id}", name=":show", methods={"HEAD","GET"})
      */
-    public function show(Entretien $entretien): Response
+    public function show(Entretien $entretiens): Response
     {
         return $this->render('entretien/show.html.twig', [
-            'entretien' => $entretien,
-        ]);
-    }
-
-    
-    /**
-     * @Route("/{id}/edit", name=":edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Entretien $entretien): Response
-    {
-        $form = $this->createForm(EntretienType::class, $entretien);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('entretien/index.html.twig');
-        }
-
-        return $this->render('entretien/edit.html.twig', [
-            'entretien' => $entretien,
-            'form' => $form->createView(),
+            'entretien' => $entretiens,
         ]);
     }
 
         
     /**
-     * @Route("/{id}", name=":update", methods={"GET","POST"})
+     * @Route("/{id}/edit", name=":update", methods={"HEAD","GET","POST"})
      */
-    public function update(Entretien $entretien, Request $request): Response
+    public function update(Entretien $entretiens, Request $request): Response
     {
         // Creation du formulaire
-        $form = $this->createForm(EntretienType::class, $entretien);
+        $form = $this->createForm(EntretienType::class, $entretiens);
 
         // On capte la methode de requête HTTP
         $form->handleRequest( $request );
@@ -103,30 +82,30 @@ class EntretienController extends AbstractController
         {
             // Recupération du Manager d'Entité (Entity Manager)
             $em = $this->getDoctrine()->getManager();
-// Preparation de la requete sur l'objet $product modifié par le formulaire
-            $em->persist( $entretien );
+            // Preparation de la requete sur l'objet $product modifié par le formulaire
+            $em->persist( $entretiens );
 
             // Execute la requete
             $em->flush();
 
             // Redirige l'utilisateur vers la page du produit
             // Creation du message de validation de la requete
-            $this->addFlash('success', "L'entretien ".$entretien->getTitle()." a été modifié !");
+            $this->addFlash('success', "L'entretien ".$entretiens->getTitle()." a été modifié !");
 
             // Redirection
-            return $this->redirectToRoute('entretien:read', [
-                'id' => $entretien->getId()
+            return $this->redirectToRoute('entretien:show', [
+                'id' => $entretiens->getId()
             ]);
         }
         
-        // Reposne HTTP
+        // Réponse HTTP
         // --
 
         // Creation de la vue du formulaire
         $form = $form->createView();
 
         return $this->render('entretien/update.html.twig', [
-            'product' => $entretien,
+            'entretiens' => $entretiens,
             'form' => $form,
         ]);
     }
@@ -135,16 +114,38 @@ class EntretienController extends AbstractController
 
 
     /**
-     * @Route("/{id}", name=":delete", methods={"POST"})
+     * @Route("/{id}/delete", name=":delete", methods={"HEAD","GET","DELETE"})
      */
-    public function delete(Request $request, Entretien $entretien): Response
+    public function delete(Entretien $entretien, Request $request): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$entretien->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($entretien);
-            $entityManager->flush();
+        // Test de la méthode HTTP / Soumission du formulaire
+        // --
+
+        // Test de la méthode HTTP: doit être en "DELETE"
+        if($request->getMethod() == 'DELETE'){
+
+            // Récupération du Manager d'Entité (Entity Manager)
+            $em = $this->getDoctrine()->getManager();
+
+            // Préparation de la requête de suppression sur l'objet $entretien
+            // /!\ et on utilise "remove" et non "persist"
+            $em->remove( $entretien );
+
+            // Exécute la requête
+            $em->flush();
+
+            // Redirection de l'utilisateur vers la liste des produits
+            // --
+
+            // Message flash de confirmation de la suppression
+            $this->addFlash('success', "Le produit ".$entretien->getTitle()." à été supprimé.");
+
+            // Redirection
+            return $this->redirectToRoute('entretien:index');
         }
 
-        return $this->redirectToRoute('entretien/index.html.twig');
+        return $this->render('entretien/delete.html.twig', [
+            'entretien' => $entretien
+        ]);
     }
 }

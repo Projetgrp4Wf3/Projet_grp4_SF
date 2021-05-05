@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Devi{% endblock %}
+
+{% block body %}
+    <h1>Edit Devi</h1>
+
+    {{ include('devi/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('devi_index') }}">back to list</a>
+
+    {{ include('devi/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% set title = "Suppression de nos entretiens : " ~ entretien.Title %}
+{% set title = "Suppression de la prestation : " ~ entretien.Title %}
 
 
 {# Page titre #}
@@ -8,27 +8,29 @@
 
 {# Page content #}
 {% block body %}
-    <div class="container">
+    <div class="container mt-5 mb-5 pt-3 pb-3 bg-white" style="border:5px solid black; border-radius:10px; box-shadow:2px 2px 5px black;">
 
     {# header / Titre de la page #}
         <header class="page-header">
             <h1 class="page-title">{{ title }}</h1>
         </header>
-    </div>
+    
 
         {# Barre d'actions ( entretien) #}
     <div class="page-toolbar text-right mt-3">
         <a href="{{ path('entretien:show', {id: entretien.id}) }}" class="btn btn-primary btn-sm">Annuler </a>
         <a href="{{ path('entretien:index') }}" class="btn btn-primary btn-sm">
-        Retour à la liste des entretiens</a>
-</div>
+        Retour à la liste des prestations</a>
+    </div>
 
-<p>Vous êtes sur le point de Supprimer l'entretien {{ entretien.title }}, voulez-vous continuer ?</p>
+
+
+<p>Vous êtes sur le point de Supprimer la prestation {{ entretien.title }}, voulez-vous continuer ?</p>
 
 {# Formulaire de confirmation de suppression du produit #}
-<form method="post" action="{{ path('entretien:delete', {id: entretien.id}) }}" onsubmit="return confirm('Etes vous sûre de vouloir continuer la suppression?');">
+<form method="POST" action="{{ path('entretien:delete', {id: entretien.id}) }}" onsubmit="return confirm('Etes vous sûre de vouloir continuer la suppression?');">
 
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ entretien.id) }}">
+    <input type="hidden" name="_method" value="DELETE">
 
     {# Bouton d'annulation #}
     <a href="{{ path('entretien:show', {id: entretien.id}) }}" class="btn btn-secondary btn-sm">Non</a>

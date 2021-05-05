@@ -6,46 +6,51 @@
 
 {# Page content #}
 {% block body %}
-    <div class="container">
+    <div class="container mt-5 mb-5 pt-3 pb-3 bg-white" style="border:5px solid black; border-radius:10px; box-shadow:2px 2px 5px black;">
 
     {# header / Titre de la page #}
         <header class="page-header">
             <h1 class="page-title">{{ title }}</h1>
         </header>
-    </div>
+    
 
     {# Barre d'actions (ajouter de nouveaux pneumatiques) #}
-    <div class="page-toolbar text-right mt-3">
-        <a href="{{ path('pneumatiques:edit') }}" class="btn btn-primary btn-sm">
-        <i class="ri-add-circle-line"></i> Ajouter de nouveaux pneumatiques </a>
-    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="page-toolbar text-right mt-3">
+            <a href="{{ path('pneumatiques:new') }}" class="btn btn-primary btn-sm">
+            <i class="ri-add-circle-line"></i> Ajouter de nouveaux pneumatiques </a>
+        </div>
+    {% endif %}
+    
 
 {# Tableau de la liste des entretiens #}
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Description</th>
-                <th>Price</th>
-                <th>actions</th>
+                <th>Prix</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
 {# corps du tableau #}
         <tbody>
-        {% for pneumatique in pneumatiques %}
+        {% for pneu in pneumatique %}
             <tr>
-                <td>{{ pneumatique.id }}</td>
-                <td>{{ pneumatique.Title }}</td>
-                <td>{{ pneumatique.description }}</td>
-                <td>{{ pneumatique.price }}</td>
+                <td>{{ pneu.id }}</td>
+                <td>{{ pneu.title }}</td>
+                <td>{{ pneu.description }}</td>
+                <td>{{ pneu.price }} €</td>
                 <td>
 
                 {# Liens #}
-                    <a href="{{ path('pneumatiques:show', {id: pneumatique.id}) }}">Montrer</a>
-                    <a href="{{ path('pneumatiques:edit', {id: pneumatique.id}) }}">Editer</a>
-                        <a href="{{ path('pneumatiques:new', {id: pneumatique.id}) }}">Créer</a>
+                    <a href="{{ path('pneumatiques:show', {id: pneu.id}) }}">Voir</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('pneumatiques:update', {id: pneu.id}) }}">Modifier</a>
+                    {% endif %}
+                    
                 </td>
             </tr>
 
@@ -54,6 +59,6 @@
         {% endfor %}
         </tbody>
     </table>
-
+</div>
 
 {% endblock %}

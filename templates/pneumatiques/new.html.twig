@@ -6,17 +6,17 @@
 
 {# Page content #}
 {% block body %}
-    <div class="container">
+    <div class="container mt-5 mb-5 pt-3 pb-3 bg-white" style="border:5px solid black; border-radius:10px; box-shadow:2px 2px 5px black;">
 
     {# header / Titre de la page #}
         <header class="page-header">
             <h1 class="page-title">{{ title }}</h1>
         </header>
-    </div>
+    
 
 {# le formulaire de creation #}
-    {% include "pneumatiques/_form.html.twig" with {form: form} %}
+    {% include "pneumatiques/_form.html.twig" with {form: form} only %}
 
     <a href="{{ path('pneumatiques:index') }}">Retour à la page principal</a>
-    
+    </div>
 {% endblock %}

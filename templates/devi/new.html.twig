@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faites un Devis | {{ parent() }} {% endblock %}
+
+{% block body %}
+    
+
+    {{ include('devi/_form.html.twig') }}
+
+    {#<a href="{{ path('devi_index') }}">back to list</a>#}
+    <script>
+    
+        const check = document.getElementsByClassName('form-check-input');
+        for(let element of check){
+            element.addEventListener("change", (event) => {
+                let result = +document.getElementById('devi_price').value;
+                const value = +event.target.value;
+                result = event.target.checked ? (result + value) : (result - value);
+                document.getElementById('devi_price').value = result;
+            });
+        }
+    
+    
+    </script>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devi index{% endblock %}
+
+{% block body %}
+    <h1>Devi index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Created_At</th>
+                <th>Montage</th>
+                <th>Depannage</th>
+                <th>Equilibre</th>
+                <th>Valve</th>
+                <th>Plaquette</th>
+                <th>Disque</th>
+                <th>Vidange</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for devi in devis %}
+            <tr>
+                <td>{{ devi.id }}</td>
+                <td>{{ devi.firstname }}</td>
+                <td>{{ devi.lastname }}</td>
+                <td>{{ devi.email }}</td>
+                <td>{{ devi.createdAt ? devi.createdAt|date('Y-m-d') : '' }}</td>
+                <td>{{ devi.montage ? 'Yes' : 'No' }}</td>
+                <td>{{ devi.depannage ? 'Yes' : 'No' }}</td>
+                <td>{{ devi.equilibre ? 'Yes' : 'No' }}</td>
+                <td>{{ devi.valve ? 'Yes' : 'No' }}</td>
+                <td>{{ devi.plaquette ? 'Yes' : 'No' }}</td>
+                <td>{{ devi.disque ? 'Yes' : 'No' }}</td>
+                <td>{{ devi.vidange ? 'Yes' : 'No' }}</td>
+                <td>{{ devi.price }}</td>
+                <td>
+                    <a href="{{ path('devi_show', {'id': devi.id}) }}">show</a>
+                    <a href="{{ path('devi_edit', {'id': devi.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('devi_new') }}">Create new</a>
+{% endblock %}

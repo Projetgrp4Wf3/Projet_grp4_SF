@@ -1,28 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% set title = "Tous nos pneumatiques : " pneumatique.Title %}
+{% set title = "Tous nos pneumatiques : " %}
 
 {# Page titre #}
 {% block title %}{{ title }} - {{ parent() }}{% endblock %}
 
 {# Page content #}
 {% block body %}
-    <div class="container">
+    <div class="container mt-5 mb-5 pt-3 pb-3 bg-white" style="border:5px solid black; border-radius:10px; box-shadow:2px 2px 5px black;">
 
     {# header / Titre de la page #}
         <header class="page-header">
             <h1 class="page-title">{{ title }}</h1>
         </header>
-    </div>
+    
 
         {# Barre d'actions (ajouter de nouveaux pneumatiques) #}
-    <div class="page-toolbar text-right mt-3">
-        <a href="{{ path('pneumatiques:create') }}" class="btn btn-primary btn-sm">
-        <i class="ri-add-circle-line"></i> Ajouter de nouveaux pneumatiques. </a>
-        <a href="{{ path('pneumatiques:update')}}" class="btn btn-primary btn-sm">
-        <i class="ri-add-circle-line"></i>Modifier</a>
-        <a href="{{ path('pneumatiques:delete')}}" class="btn btn-primary btn-sm"><i class="ri-add-circle-line"></i> Supprimer</a>
-    </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="page-toolbar text-right mt-3 mb-3">
+                <a href="{{ path('pneumatiques:new') }}" class="btn btn-primary btn-sm">
+                <i class="ri-add-circle-line"></i> Ajouter de nouveaux pneumatiques. </a>
+                <a href="{{ path('pneumatiques:update', {id: pneumatique.id})}}" class="btn btn-warning btn-sm">
+                Modifier</a>
+                <a href="{{ path('pneumatiques:delete', {id: pneumatique.id})}}" class="btn btn-danger btn-sm">Supprimer</a>
+            </div>
+        {% endif %}
+        
 
 {# Infos sur les pneumatiques #}
     <table class="table">
@@ -33,24 +36,21 @@
             </tr>
             <tr>
                 <th>Titre</th>
-                <td>{{ pneumatique.Title }}</td>
+                <td>{{ pneumatique.title }}</td>
             </tr>
             <tr>
                 <th>Description</th>
-                <td>{{ pneumatique.description }}
-                </td>
+                <td>{{ pneumatique.description }}</td>
             </tr>
             <tr>
             <th>Prix</th>
-            <td>{{ pneumatique.price }}</td>
+            <td>{{ pneumatique.price }} €</td>
             </tr>
         </tbody>
     </table>
 
     <a href="{{ path('pneumatiques:index') }}">Retour à la liste principale</a>
 
-    <a href="{{ path('pneumatiques:edit', {id: pneumatique.id}) }}">Editer</a>
-
-    {% include "pneumatiques/_form.html.twig" with {form: form} %}
+</div>
     
 {% endblock %}

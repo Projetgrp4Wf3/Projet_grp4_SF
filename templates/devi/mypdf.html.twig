@@ -1,0 +1,92 @@
+<h1>Mon Devis | MLV Auto</h1>
+
+{{ form_start(form, {
+    attr: {
+        novalidate: "novalidate"
+    }
+}) }}
+
+
+
+    <div class="container">
+        
+        <div class="row">
+            
+            <div class="col-lg-4 offset-2">
+                {{ form_label(form.firstname) }}
+                {{ form_widget(form.firstname) }}
+                
+            </div>
+
+            <div class="col-lg-4 offset-2">
+                {{ form_label(form.lastname) }}
+                {{ form_widget(form.lastname) }}
+                
+            </div>
+
+            <div class="col-lg-4 offset-2">
+                {{ form_label(form.created_At) }}
+                {{ form_widget(form.created_At) }}
+                
+            </div>
+
+            <div class="col-lg-4 offset-2">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+                
+            </div>
+
+            
+            <div class="col-12 mt-4">
+                <h4 class="text-center">Choix des prestations :</h4>
+
+                <div class="col-lg-4 offset-2 mt-5">
+                    <div class="form-group">
+                        {{ form_label(form.montage) }}
+                        {{ form_widget(form.montage) }}
+                        {{ form_label(form.depannage) }}
+                        {{ form_widget(form.depannage) }}
+                    </div>
+                </div>
+
+                <div class="col-lg-4 offset-2">
+                    <div class="form-group">
+                        {{ form_label(form.equilibre) }}
+                        {{ form_widget(form.equilibre) }}
+                        {{ form_label(form.valve) }}
+                        {{ form_widget(form.valve) }}
+                    </div>
+                    
+                </div>
+
+                <div class="col-lg-4 offset-2">
+                    <div class="form-group">
+                        {{ form_label(form.plaquette) }}
+                        {{ form_widget(form.plaquette) }}
+                        {{ form_label(form.disque) }}
+                        {{ form_widget(form.disque) }}
+                    </div>
+                    
+                </div>
+
+                <div class="col-lg-4 offset-2">
+                    <div class="form-group">
+                        {{ form_label(form.vidange) }}
+                        {{ form_widget(form.vidange) }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-4 offset-2">
+                {{ form_label(form.price) }}
+                {{ form_widget(form.price) }}
+                
+            </div>
+        </div>  
+    </div>
+
+{{ form_end(form, {
+    render_rest: false
+}) }}

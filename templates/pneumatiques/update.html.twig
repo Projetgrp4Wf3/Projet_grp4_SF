@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% set title = "Modification de nos pneumatiques : " ~ pneumatique.Title %}
+{% set title = "Modification du pneumatique : " ~ pneumatique.title %}
 
 
 {# Page titre #}
@@ -10,23 +10,27 @@
 
 {# Page content #}
 {% block body %}
-    <div class="container">
+    <div class="container mt-5 mb-5 pt-3 pb-3 bg-white" style="border:5px solid black; border-radius:10px; box-shadow:2px 2px 5px black;">
 
     {# header / Titre de la page #}
         <header class="page-header">
             <h1 class="page-title">{{ title }}</h1>
         </header>
-    </div>
+    
 
     {# Barre d'actions (ajouter un produit) #}
     <div class="page-toolbar text-right mt-3">
-        <a href="{{ path('pneumatiques:read', {id: pneumatique.id}) }}" class="btn btn-secondary btn-sm">Annuler</a>
+        <a href="{{ path('pneumatiques:show', {id: pneumatique.id}) }}" class="btn btn-secondary btn-sm">Annuler</a>
         <a href="{{ path('pneumatiques:index') }}" class="btn btn-secondary btn-sm">Retour à la liste des entretiens</a>
+        <a href="{{ path('pneumatiques:delete', {id: pneumatique.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
     </div>
 
     
     {# Formulaire de creation du produit #}
-    {% include "pneumatiques/_form.html.twig" with {form: form, btn_label:"Modifier"} only %}
+    {% include "pneumatiques/_form.html.twig" with {
+        form: form, 
+        btn_label: "Modifier",
+    } only %}
 
 
 </div>

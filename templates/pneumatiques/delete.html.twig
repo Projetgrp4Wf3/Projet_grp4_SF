@@ -8,33 +8,33 @@
 
 {# Page content #}
 {% block body %}
-    <div class="container">
+    <div class="container mt-5 mb-5 pt-3 pb-3 bg-white" style="border:5px solid black; border-radius:10px; box-shadow:2px 2px 5px black;">
 
     {# header / Titre de la page #}
         <header class="page-header">
             <h1 class="page-title">{{ title }}</h1>
         </header>
-    </div>
+    
 
-        {# Barre d'actions ( entretien) #}
+        {# Barre d'actions ( pneumatiques) #}
     <div class="page-toolbar text-right mt-3">
         <a href="{{ path('pneumatiques:show', {id: pneumatique.id}) }}" class="btn btn-primary btn-sm">Annuler </a>
-        <a href="{{ path('entretien:index') }}" class="btn btn-primary btn-sm">
+        <a href="{{ path('pneumatiques:index') }}" class="btn btn-primary btn-sm">
         Retour à la liste des pneumatiques</a>
 </div>
 
 <p>Vous êtes sur le point de Supprimer le pneumatique {{ pneumatique.title }}, voulez-vous continuer ?</p>
 
-{# Formulaire de suppression des pneumatiques#}
-<form method="post" action="{{ path('pneumatiques:delete', {id: pneumatique.id}) }}" onsubmit="return confirm('Etes vous sûre de vouloir continuer la suppression?');">
+{# Formulaire de suppression des pneumatiques #}
+<form method="POST" action="{{ path('pneumatiques:delete', {id: pneumatique.id}) }}" onsubmit="return confirm('Etes vous sûre de vouloir continuer la suppression?');">
 
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pneumatique.id) }}">
+    <input type="hidden" name="_method" value="DELETE">
 
     {# Bouton d'annulation #}
-    <a href="{{ path('entretien:show', {id: entretien.id}) }}" class="btn btn-secondary btn-sm">Non</a>
+    <a href="{{ path('pneumatiques:show', {id: pneumatique.id}) }}" class="btn btn-secondary btn-sm">Non</a>
     
     {# Confirmation #}
-    <button class="btn btn-danger btn-sm">Suppression</button>
+    <button type="submit" class="btn btn-danger btn-sm">Suppression</button>
 </form>
 
 </div>

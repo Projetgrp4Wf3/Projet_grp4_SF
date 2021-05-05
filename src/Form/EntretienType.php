@@ -20,14 +20,14 @@ class EntretienType extends AbstractType
     {
         $builder
         ->add('title', TextType::class, [
-            'label' => "Titre de l'entretien",
+            'label' => "Titre de la prestation",
             'label_attr' => [
                 'class' => "",
             ],
             'required' => true,
             'attr' => [
                 'class' => "",
-                'placeholder' => "Saisir le titre de l'entretien",
+                'placeholder' => "Saisir le titre de la prestation",
             ],
             'help' => "le titre sera affiché publiquement.",
             'help_attr' => [
@@ -41,14 +41,14 @@ class EntretienType extends AbstractType
         ])
 
         ->add('description', TextareaType::class, [
-            'label' => "Description de l'entretien",
+            'label' => "Description de la prestation",
             'label_attr' => [
                 'class' => "",
             ],
             'required' => true,
             'attr' => [
                 'class' => "",
-                'placeholder' => "Saisir la description de l'entretien.",
+                'placeholder' => "Saisir la description de la prestation.",
             ],
             'help' => "Cette description sera affichée publiquement.",
             'help_attr' => [

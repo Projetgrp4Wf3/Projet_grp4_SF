@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% set title = "Tous nos entretiens" %}
+{% set title = "Toutes nos prestations" %}
 
 
 {# Page titre #}
@@ -9,19 +9,22 @@
 
 {# Page content #}
 {% block body %}
-    <div class="container">
+    <div class="container mt-5 mb-5 pt-3 pb-3 bg-white" style="border:5px solid black; border-radius:10px; box-shadow:2px 2px 5px black;">
 
     {# header / Titre de la page #}
         <header class="page-header">
             <h1 class="page-title">{{ title }}</h1>
         </header>
-    </div>
+    
 
     {# Barre d'actions (ajouter un nouvelle entretien) #}
-    <div class="page-toolbar text-right mt-3">
-        <a href="{{ path('entretien:create') }}" class="btn btn-primary btn-sm">
-        <i class="ri-add-circle-line"></i> Ajouter un nouveau entretien </a>
-    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="page-toolbar text-right mt-3 mb-3">
+            <a href="{{ path('entretien:new') }}" class="btn btn-primary btn-sm">
+            <i class="ri-add-circle-line"></i> Ajouter une prestation </a>
+        </div>
+    {% endif %}
+    
 
 
 {# Tableau de la liste des entretiens #}
@@ -44,14 +47,15 @@
                 <td>{{ entretien.id }}</td>
                 <td>{{ entretien.Title }}</td>
                 <td>{{ entretien.description }}</td>
-                <td>{{ entretien.price}}</td>
+                <td>{{ entretien.price}} €</td>
                 <td>
 
                 {# Liens #}
-                    <a href="{{ path('entretien:edit', {id: entretien.id}) }}">Editer</a>
+                {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('entretien:update', {id: entretien.id}) }}"> Modifier</a>
-                    <a href="{{ path('entretien:show', {id: entretien.id}) }}">Montrer </a>
-                    <a href="{{ path('entretien:new', {id: entretien.id}) }}">Création nouvelle</a>                    
+                {% endif %}
+                    
+                    <a href="{{ path('entretien:show', {id: entretien.id}) }}">Voir </a>                    
                 </td>
             </tr>
         
@@ -59,5 +63,5 @@
         </tbody>
     </table>
 
-
+    </div>  
 {% endblock %}

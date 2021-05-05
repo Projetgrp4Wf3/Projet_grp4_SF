@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devi{% endblock %}
+
+{% block body %}
+    <h1>Devi</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ devi.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ devi.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ devi.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ devi.email }}</td>
+            </tr>
+            <tr>
+                <th>Created_At</th>
+                <td>{{ devi.createdAt ? devi.createdAt|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Montage</th>
+                <td>{{ devi.montage ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Depannage</th>
+                <td>{{ devi.depannage ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Equilibre</th>
+                <td>{{ devi.equilibre ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Valve</th>
+                <td>{{ devi.valve ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Plaquette</th>
+                <td>{{ devi.plaquette ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Disque</th>
+                <td>{{ devi.disque ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Vidange</th>
+                <td>{{ devi.vidange ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ devi.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('devi_index') }}">back to list</a>
+
+    <a href="{{ path('devi_edit', {'id': devi.id}) }}">edit</a>
+
+    {{ include('devi/_delete_form.html.twig') }}
+{% endblock %}

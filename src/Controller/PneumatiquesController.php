@@ -17,12 +17,13 @@ class PneumatiquesController extends AbstractController
 {
     /**
      * path('pneumatiques:index')
-     * @Route("/", name=":index", methods={"HEAD","GET","POST"})
+     * @Route("/", name=":index", methods={"HEAD","GET"})
      */
     public function index(PneumatiquesRepository $pneumatiquesRepository): Response
     {
+        $pneumatique = $pneumatiquesRepository->findAll();
         return $this->render('pneumatiques/index.html.twig', [
-            'pneumatiques' => $pneumatiquesRepository->findAll(),
+            'pneumatique' => $pneumatique,
         ]);
 
     }
@@ -42,8 +43,9 @@ class PneumatiquesController extends AbstractController
             $entityManager->persist($pneumatique);
             $entityManager->flush();
             
-            $this->addFlash('succes',"le pneumatique".$pneumatique->getTitle()."a été créé !");
+            $this->addFlash('success',"le pneumatique ".$pneumatique->getTitle()." a été créé !");
             return $this->redirectToRoute('pneumatiques:index', [
+                //'pneumatique' => $pneumatique,
                 'id' => $pneumatique->getId()
             ]);
         }
@@ -61,32 +63,14 @@ class PneumatiquesController extends AbstractController
     public function show(Pneumatiques $pneumatique): Response
     {
         return $this->render('pneumatiques/show.html.twig', [
-            'pneumatiques' => $pneumatique,
+            'pneumatique' => $pneumatique,
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name=":edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Pneumatiques $pneumatique): Response
-    {
-        $form = $this->createForm(PneumatiquesType::class, $pneumatique);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('pneumatiques/index.html.twig');
-        }
-
-        return $this->render('pneumatiques/edit.html.twig', [
-            'pneumatiques' => $pneumatique,
-            'form' => $form->createView(),
-        ]);
-    }
+    
             
     /**
-     * @Route("/update/{id}", name=":update", methods={"GET","POST"})
+     * @Route("/{id}/edit", name=":update", methods={"HEAD","GET","POST"})
      */
     public function update(Pneumatiques $pneumatique, Request $request): Response
     {
@@ -119,35 +103,57 @@ class PneumatiquesController extends AbstractController
 
 
             // Redirection
-            return $this->redirectToRoute('pneumatiqu:read', [
+            return $this->redirectToRoute('pneumatiques:show', [
                 'id' => $pneumatique->getId()
             ]);
         }
 
 
-        // Reposne HTTP
+        // Réponse HTTP
         // --
 
         // Creation de la vue du formulaire
         $form = $form->createView();
 
         return $this->render('pneumatiques/update.html.twig', [
-            'product' => $pneumatique,
+            'pneumatique' => $pneumatique,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name=":delete", methods={"POST"})
+     * @Route("/{id}/delete", name=":delete", methods={"HEAD","GET","DELETE"})
      */
     public function delete(Request $request, Pneumatiques $pneumatique): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$pneumatique->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($pneumatique);
-            $entityManager->flush();
+        // Test de la méthode HTTP / Soumission du formulaire
+        // --
+
+        // Test de la méthode HTTP: doit être en "DELETE"
+        if($request->getMethod() == 'DELETE'){
+
+            // Récupération du Manager d'Entité (Entity Manager)
+            $em = $this->getDoctrine()->getManager();
+
+            // Préparation de la requête de suppression sur l'objet $pneumatique
+            // /!\ et on utilise "remove" et non "persist"
+            $em->remove( $pneumatique );
+
+            // Exécute la requête
+            $em->flush();
+
+            // Redirection de l'utilisateur vers la liste des pneus
+            // --
+
+            // Message flash de confirmation de la suppression
+            $this->addFlash('success', "Le produit ".$pneumatique->getTitle()." à été supprimé.");
+
+            // Redirection
+            return $this->redirectToRoute('pneumatiques:index');
         }
 
-        return $this->redirectToRoute('pneumatiques/index.html');
+        return $this->render('pneumatiques/delete.html.twig', [
+            'pneumatique' => $pneumatique
+        ]);
     }
 }
