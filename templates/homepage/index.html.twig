@@ -4,6 +4,11 @@
 {% block title %} {{ title }} | {{parent()}} {% endblock %}
 
 {% block body %}
+<style>
+    #macarte{
+        height: 400px;
+    }
+</style>
 
 <header>
 
@@ -79,5 +84,46 @@
             <p class="pl-5 pr-5 mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus impedit sit maxime dicta. Ad aperiam nam porro repellat dolore tenetur.</p>
         </div>
     </div>
+
+    <div class="bg-white col-12">
+        <h2 class="text-center font-weight-bold text-warning mb-3">Trouvez votre garage</h2>
+        <div id="macarte"> Ma carte</div>
+    </div>
 </div>
+
+<script>
+        //on charge la page
+    window.onload = function(){
+    let macarte = L.map("macarte").setView([48.7767, 2.00167], 13)
+    L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+        attribution: 'données &copy; <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+        miniZoom: 1,
+        maxZoom: 20
+    }).addTo(macarte)
+
+    //on active la gestion d'itinéraires
+    L.Routing.control({
+        waypoints: [
+            L.latLng(),
+            L.latLng(48.7650, 2.0062),
+            nom = "Votre Garage est ici",
+
+        ],
+        geocoder: L.Control.Geocoder.nominatim(),
+        lineOptions: {
+            styles: [{
+                color: 'red',
+                opacity: 2,
+                weight: 7,
+            }
+        ]
+        },
+
+        router: new L.Routing.osrmv1({
+            language: 'fr',
+        })
+    }).addTo(macarte)
+
+    };
+</script>
 {% endblock %}

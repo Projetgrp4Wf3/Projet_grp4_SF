@@ -39,7 +39,7 @@ class RdvController extends AbstractController
             $entityManager->persist($calendar);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Votre RDV a bien été enregistrée !');
+            $this->addFlash('success', 'Votre demande de RDV a bien été enregistrée !');
 
             return $this->redirectToRoute('rdv_new');
         }

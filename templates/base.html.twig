@@ -4,7 +4,14 @@
         <meta charset="UTF-8">
         <title>{% block title %}MLV Auto{% endblock %}</title>
 
+        {# CDN FullCalendar #}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+
+        {# CDN OpenMaps #}
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+        
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -101,10 +108,12 @@
                 <!--Fin de module de connexion-->
                 
             </ul>
-                <form class="form-inline my-2 my-lg-0">
+                {# Barre de recherche #}
+
+                {#<form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Chercher</button>
-                </form>
+                </form>#}
             </div>
         </nav>
 
@@ -173,7 +182,7 @@
         <!-- Content -->
         <h6 class="text-uppercase font-weight-bold">Votre garage</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>Vener nous renctontrez</p>
+        <p>Venez nous renctontrez</p>
         <p>Nos horaires</p>
 
     </div>
@@ -183,7 +192,8 @@
     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
         <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold">Plan du site</h6>
+
+        {#<h6 class="text-uppercase font-weight-bold">Plan du site</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p>
         <a href="#!">Administration</a>
@@ -196,7 +206,7 @@
         </p>
         <p>
         <a href="#!">Blog</a>
-        </p>
+        </p>#}
 
     </div>
     <!-- Grid column -->
@@ -205,7 +215,7 @@
     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
         <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold">Liens usuels</h6>
+        {#<h6 class="text-uppercase font-weight-bold">Liens usuels</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p>
         <a href="#!">Votre Compte</a>
@@ -218,7 +228,7 @@
         </p>
         <p>
         <a href="#!">SAV</a>
-        </p>
+        </p>#}
 
     </div>
     <!-- Grid column -->
@@ -249,10 +259,10 @@
 
 <!-- Copyright -->
 <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="#"> Mentions Légales</a>
-    <a href="#">Protection de la vie Privée</a>
-    <a href="#">Cookies</a>
-    <a href="#">Site Réalisé par : </a>
+    Mentions Légales
+    Protection de la vie Privée
+    Cookies
+    Site Réalisé par : 
 </div>
 <!-- Copyright -->
 
@@ -260,8 +270,13 @@
 <!-- Footer -->
 
 
-
+{# CDN FullCalendar #}
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js" integrity="sha256-ekrJn2FeZaiUFq99QswpQCUTME/HxaDfX7R8INzKJGE=" crossorigin="anonymous"></script>
+
+{# CDN OpenMaps #}
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
